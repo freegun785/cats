@@ -13,9 +13,16 @@ cats.forEach((cat) => {
 });
 
 // модальное окно
+
+// если просто передать popup.open,
+// то у нас теряется this
+// (потому что передается ссылка на функцию)
 popupBtn.addEventListener("click", () => {
   popup.open();
 });
+
+// можно и так, но громоздко
+// popupBtn.addEventListener("click", popup.open.bind(popup));
 
 popupCloseBtn.addEventListener("click", () => {
   popup.close();

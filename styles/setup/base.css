@@ -7,14 +7,14 @@ body {
   font-family: "Arial", "Helvetica", sans-serif;
 }
 
+/* Наследование размеров блока для всех элементов от родителя */
 *,
 *::after,
 *::before {
-
   box-sizing: inherit;
 }
 
-
+/* Цвет наследуется от родительского элемента */
 a {
   color: currentColor;
 }
