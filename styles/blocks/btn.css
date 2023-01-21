@@ -1,13 +1,15 @@
 .btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--bg-main-btn-color);
+  color: var(--text-main-btn-color);
   padding: 6px 10px;
-  border-radius: 10px;
-  font-size: 18px;
-  gap: 10px;
   border: none;
-  background-color: var(--bg-secondary-color);
-  color: var(--text-light-color);
+  border-radius: 10px;
   cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover {
+  background-color: var(--bg-main-btn-transition-color);
+  box-shadow: var(--bg-main-shadow-color) 0px 3px 3px 0px;
+  transform: scale(1.05);
 }
