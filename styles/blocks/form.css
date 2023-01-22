@@ -1,0 +1,40 @@
+.popup__form {
+  display: grid;
+  /* 3 столбца */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.form__image {
+  /* Схлопывание строк */
+  grid-row: span 3;
+  background-image: url("./../../assets/images/cat.jpg");
+  background-size: cover;
+  border-radius: 5px;
+}
+
+.form__textarea {
+  grid-row: span 2;
+  resize: none;
+  height: 100%;
+}
+
+.form__btn {
+  font-size: 16px;
+}
+
+.form__input {
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--outline-color);
+  border-radius: 5px;
+  padding: 10px 10px;
+}
+
+.form__input:focus {
+  border: 1px solid var(--accent-color);
+  box-shadow: var(--accent-color) 0px 1px 5px;
+}
+
+

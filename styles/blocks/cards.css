@@ -1,5 +1,6 @@
 .cards{
   display: grid;
+  /* автоматическая заливка столбцами в зависимости от размеров страницы */
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 20px;
   align-content: flex-start;

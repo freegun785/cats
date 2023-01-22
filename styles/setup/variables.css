@@ -6,4 +6,10 @@
   --text-main-btn-color: #fff;
   --bg-main-like-color: #ff0033;
   --bg-main-card-color: #f8f7f7;
+  --bg-main-popup-color: rgba(0, 0, 0, 0.6);
+  --bg-main-popup-container-color: #fff;
+  --bg-main-popup-close-btn-color: #ff3939;
+  --bg-main-popup-close-btn-transition-color: #ff5555;
+  --outline-color: #CFD8DC;
+  --accent-color: #18b346;
 }

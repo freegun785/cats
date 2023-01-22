@@ -17,6 +17,9 @@ class Card {
     if (!this._data.favorite) {
       cardLike.remove();
     }
+
+    //показ рейтинга у карточки
+    //может есть вариант полаконичнее
     for (let i = 0; i < 10; i++) {
       let star = document.createElement("i");
       if (i < +this._data.rate) {

@@ -17,12 +17,12 @@
   object-fit: cover;
   border-radius: 15px;
   transition: .3s;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
-.card__image:hover {
+/* .card__image:hover {
   opacity: 0.7;
-}
+} */
 
 .card__footer {
   display: flex;
