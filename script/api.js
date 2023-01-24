@@ -17,6 +17,7 @@ class Api {
     fetch(`${this._url}/show`, { method: "GET" });
   }
 
+
   addData(body) {
     fetch(`${this._url}/add`, {
       method: "POST",

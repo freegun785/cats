@@ -12,25 +12,45 @@
 }
 
 .card__image {
-  height: 120px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 15px;
-  transition: .3s;
-  /* cursor: pointer; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  cursor: pointer;
+
 }
 
-/* .card__image:hover {
+.card__image img {
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: .1s;
+}
+
+.card__image img:hover {
   opacity: 0.7;
-} */
+  filter: blur(3px);
+}
 
 .card__footer {
   display: flex;
   justify-content:space-between;
-  align-items: center;
+  align-content: center;
   padding: 5px;
 }
 
 .card__footer-like {
   color: var(--bg-main-like-color);
+}
+
+.card__hover {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.hover_active {
+  visibility: visible;
 }

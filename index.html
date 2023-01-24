@@ -38,8 +38,8 @@
       </div>
     </footer>
 
-    <!-- popup -->
-    <div class="popup">
+    <!-- popup-add-data -->
+    <div class="popup add-data">
       <div class="popup__container">
         <h1 class="popup__title">Добавить котика</h1>
         <button class="popup__close btn">
@@ -62,15 +62,47 @@
       </div>
     </div>
 
+    <!-- popup-show-info -->
+    <div class="popup show-info">
+      <div class="popup__container">
+        <h1 class="popup__title">Информация о котике</h1>
+        <button class="popup__close btn">
+          <i class="fa-solid fa-xmark"></i>
+          </button>
+          <section class="popup_info">
+            <div class="info__image">
+              <img src="#" alt="Котик">
+            </div>
+            <div>
+            <h2 class="name"></h2>
+            <div class="description">
+              <h4>Описание:</h4>
+              <p class="description-text"></p>
+            </div>
+            <div class="age">
+              <h4>Возраст:</h4>
+              <p class="age-text"></p>
+            </div>
+            <div class="rate">
+              <h4>Рейтинг:</h4>
+              <p class="rate-text"></p>
+            </div>
+            </div>
+          </section>
+      </div>
+    </div>
+
     <!-- template -->
     <template id="card-template">
       <div class="card">
           <h3 class="card__title"></h3>
+          <div class="card__image">
           <img
             src="#"
             alt="#"
-            class="card__image"
           />
+          <div class="card__hover"><i class="fa-solid fa-magnifying-glass-plus fa-2x"></i></div>
+          </div>
           <div class="card__footer">
             <div class="card__footer-rating">
             </div>
