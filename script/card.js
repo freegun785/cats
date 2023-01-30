@@ -22,12 +22,6 @@ class Card {
   }
 
   _getCardInfo() {
-    const name = this._data.name;
-    const image = this._data.image;
-    const description = this._data.description;
-    const rate = this._data.rate;
-    const age = this._data.age;
-
     const popup = document.querySelector(".show-info");
     const popupName = popup.querySelector(".name");
     const popupDescription = popup.querySelector(".description-text");
@@ -35,11 +29,25 @@ class Card {
     const popupAge = popup.querySelector(".age-text");
     const popupRate = popup.querySelector(".rate-text");
 
-    popupName.textContent = name;
-    popupDescription.textContent = description;
-    popupImage.src = image;
-    popupAge.textContent = age;
-    popupRate.textContent = rate;
+    popupName.textContent = this._data.name;
+    popupDescription.textContent = this._data.description;
+    popupImage.src = this._data.image;
+    popupAge.textContent = this._data.age;
+    popupRate.textContent = this._data.rate;
+  }
+
+  _removeCard() {
+    const id = this._card.querySelector(".card__title__remove").dataset[
+      "remove_id"
+    ];
+    if (confirm(`Вы уверены, что хотите удалить кота ${this._data.name}?`)) {
+      this._card.remove();
+      api.deleteData(+id);
+    }
+  }
+
+  _editCard() {
+    setFormInfo(".popup__edit-form", this._data);
   }
 
   _setCardShowInfoEventListener() {
@@ -48,19 +56,39 @@ class Card {
     });
   }
 
+  _setCardRemoveEventListener() {
+    const removeBtn = this._card.querySelector(".card__title__remove");
+    removeBtn.addEventListener("click", (e) => {
+      this._removeCard();
+    });
+  }
+
+  _setCardEditEventListener() {
+    const editBtn = this._card.querySelector(".card__title__edit");
+    editBtn.addEventListener("click", (e) => {
+      this._editCard();
+    });
+  }
+
   getCard() {
     const cardImage = this._card.querySelector(".card__image img");
-    const cardTitle = this._card.querySelector(".card__title");
+    const cardTitle = this._card.querySelector(".card__title__text");
     const cardLike = this._card.querySelector(".card__footer-like");
+    const cardRemove = this._card.querySelector(".card__title__remove");
+    const cardEdit = this._card.querySelector(".card__title__edit");
 
     cardImage.src = this._data.image;
     cardTitle.textContent = this._data.name;
     if (!this._data.favorite) {
       cardLike.remove();
     }
+    cardRemove.dataset["remove_id"] = this._data.id;
+    cardEdit.dataset["edit_id"] = this._data.id;
 
     this._setRating();
     this._setCardShowInfoEventListener();
+    this._setCardRemoveEventListener();
+    this._setCardEditEventListener();
 
     return this._card;
   }

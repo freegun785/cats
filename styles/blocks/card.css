@@ -6,9 +6,26 @@
 }
 
 .card__title {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr auto auto;
+}
+
+.card__title__text {
   font-size: 18px;
   margin: 0;
-  padding: 0px 5px 5px;
+  padding: 0px 5px 0px;
+}
+
+.card__title__edit, .card__title__remove {
+  padding: 5px;
+  transition: .05s;
+  cursor: pointer;
+}
+
+.card__title__edit:hover,
+.card__title__remove:hover {
+  transform: scale(1.2);
 }
 
 .card__image {

@@ -62,6 +62,30 @@
       </div>
     </div>
 
+    <!-- popup-edit-data -->
+    <div class="popup edit-data">
+      <div class="popup__container">
+        <h1 class="popup__title">Изменить котика</h1>
+        <button class="popup__close btn">
+          <i class="fa-solid fa-xmark"></i>
+          </button>
+          <form class="popup__edit-form">
+            <div class="form__image"></div>
+                <input type="number" class="form__input" name="id" min="1" required placeholder="id" disabled>
+                <input type="number" class="form__input" name="age" placeholder="Возраст">
+                <input type="text" class="form__input" name="name" required placeholder="Имя">
+                <input type="number" class="form__input" name="rate" placeholder="Рейтинг (0-10)" min="0" max="10">
+                <textarea name="description" class="form__input form__textarea" placeholder="Описание"></textarea>
+                <label>
+                    <input type="checkbox" name="favorite" class="form__checkbox " placeholder="">
+                    <span class="form__label">Любимый кот</span>  
+                </label>
+                <input type="url" class="form__input form__input_image" name="image" placeholder="Ссылка на фото">
+                <button type="submit" class="form__btn btn">Изменить</button>
+          </form>
+      </div>
+    </div>
+
     <!-- popup-show-info -->
     <div class="popup show-info">
       <div class="popup__container">
@@ -95,7 +119,11 @@
     <!-- template -->
     <template id="card-template">
       <div class="card">
-          <h3 class="card__title"></h3>
+        <div class="card__title">
+          <h3 class="card__title__text"></h3>
+          <div class="card__title__edit"><i class="fa-solid fa-pen-to-square"></i></i></div>
+          <div class="card__title__remove"><i class="fa-solid fa-trash"></i></div>
+        </div>
           <div class="card__image">
           <img
             src="#"
@@ -114,10 +142,11 @@
     </template>
 
     <!-- scripts -->
-    <script src="./script/db.js" defer></script>
+    <!-- <script src="./script/db.js" defer></script> -->
     <script src="./script/api.js" defer></script>
     <script src="./script/card.js" defer></script>
     <script src="./script/popup.js" defer></script>
+    <script src="./script/utils.js" defer></script>
     <script src="./script/index.js" defer></script>
   </body>
 </html>

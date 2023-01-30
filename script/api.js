@@ -13,41 +13,47 @@ class Api {
     this._headers = config.headers;
   }
 
-  getAllData() {
-    fetch(`${this._url}/show`, { method: "GET" });
+  //Если все хорошо, то парсим ответ, если нет, то реджект
+  _onResponse(res) {
+    return res.ok ? res.json() : Promise.reject({ ...res, message: "error" });
   }
 
+  getAllData() {
+    return fetch(`${this._url}/show`, { method: "GET" }).then(this._onResponse);
+  }
 
   addData(body) {
-    fetch(`${this._url}/add`, {
+    return fetch(`${this._url}/add`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(body),
-    });
+    }).then(this._onResponse);
   }
 
   getDataById(id) {
-    fetch(`${this._url}/show/${id}`, { method: "GET" });
+    return fetch(`${this._url}/show/${id}`, { method: "GET" }).then(
+      this._onResponse
+    );
   }
 
   updateData(newData, id) {
-    fetch(`${this._url}/update/${id}`, {
+    return fetch(`${this._url}/update/${id}`, {
       method: "PUT",
       headers: this._headers,
       body: JSON.stringify(newData),
-    });
+    }).then(this._onResponse);
   }
 
   deleteData(id) {
-    fetch(`${this._url}/delete/${id}`, { method: "DELETE" });
+    return fetch(`${this._url}/delete/${id}`, { method: "DELETE" }).then(
+      this._onResponse
+    );
   }
 
   getAllIds() {
-    fetch(`${this._url}/ids`, { method: "GET" });
+    return fetch(`${this._url}/ids`, { method: "GET" }).then(this._onResponse);
   }
 }
-
-const api = new Api(CONFIG_API);
 // const data = {
 //   id: 1673947287227,
 //   name: "Баобаб",

@@ -1,4 +1,4 @@
-.popup__form {
+.popup__form, .popup__edit-form {
   display: grid;
   /* 3 столбца */
   grid-template-columns: repeat(3, 1fr);

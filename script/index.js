@@ -1,31 +1,53 @@
 const mainCardsContainer = document.querySelector(".cards");
+
 const popupBtn = document.querySelector("#add");
 const popupCloseBtn = document.querySelector(".popup__close");
 const popupAddData = new Popup("add-data");
 const popupShowInfo = new Popup("show-info");
+const popupEditData = new Popup("edit-data");
 popupAddData.setEventListener();
 popupShowInfo.setEventListener();
+popupEditData.setEventListener();
 
-// console.log(popup);
+const api = new Api(CONFIG_API);
 
-// выдача карточек
-cats.forEach((cat) => {
-  const card = new Card(cat, "#card-template");
-  const newCard = card.getCard();
-  mainCardsContainer.append(newCard);
-});
+const formAddData = document.querySelector(".popup__form");
+const formEditData = document.querySelector(".popup__edit-form");
 
-// модальное окно
+function showData() {
+  api.getAllData().then((data) =>
+    data.forEach((cat) => {
+      createCard(".cards", cat);
+    })
+  );
+}
 
-// если просто передать popup.open,
-// то у нас теряется this
-// (потому что передается ссылка на функцию)
+showData();
+
+function formAddCat(e) {
+  e.preventDefault();
+  const dataForm = getFormInfo(".popup__form");
+  api.addData(dataForm);
+  createCard(".cards", dataForm);
+  popupAddData.close();
+}
+
+async function formEditCat(e) {
+  e.preventDefault();
+  const dataForm = getFormInfo(".popup__edit-form");
+  const id = +dataForm.id;
+  await api.updateData(dataForm, id);
+  document.querySelectorAll(".card").forEach((e) => e.remove());
+  showData();
+  popupEditData.close();
+}
+
+formAddData.addEventListener("submit", formAddCat);
+formEditData.addEventListener("submit", formEditCat);
+
 popupBtn.addEventListener("click", () => {
   popupAddData.open();
 });
-
-// можно и так, но громоздко
-// popupBtn.addEventListener("click", popup.open.bind(popup));
 
 popupCloseBtn.addEventListener("click", () => {
   popupAddData.close();
@@ -53,4 +75,15 @@ mainCardsContainer.addEventListener("mouseout", (e) => {
   if (target.tagName === "IMG") {
     target.nextElementSibling.classList.remove("hover_active");
   }
+});
+
+mainCardsContainer.addEventListener("click", (e) => {
+  let target = e.target;
+
+  if (
+    !target.classList.contains("card__title__edit") &&
+    !target.parentElement.classList.contains("card__title__edit")
+  )
+    return;
+  popupEditData.open();
 });
