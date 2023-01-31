@@ -1,7 +1,9 @@
 function getFormInfo(formSelector) {
   const formAddData = document.querySelector(formSelector);
   const formElements = [...formAddData];
-  const dataFormObj = {};
+  let dataFormObj = {};
+  const localData = JSON.parse(localStorage.getItem("cards"));
+  console.log(localData);
 
   formElements.forEach((element) => {
     if (element.nodeName === "INPUT" || element.nodeName === "TEXTAREA") {
@@ -11,6 +13,11 @@ function getFormInfo(formSelector) {
     }
   });
 
+  localData.forEach((element) => {
+    if (+element.id === +dataFormObj.id) {
+      dataFormObj = false;
+    }
+  });
   return dataFormObj;
 }
 
@@ -23,20 +30,11 @@ function setFormInfo(formSelector, data) {
       element.type === "checkbox"
         ? (element.checked = data[element.name])
         : (element.value = data[element.name]);
-      // ? (dataFormObj[element.name] = element.checked)
-      // : (dataFormObj[element.name] = element.value);
     }
   });
 }
 
 function createCard(mainCardsSelector, data) {
-  const mainCardsContainer = document.querySelector(mainCardsSelector);
-  const card = new Card(data, "#card-template");
-  const newCard = card.getCard();
-  mainCardsContainer.append(newCard);
-}
-
-function updateCard(mainCardsSelector, data) {
   const mainCardsContainer = document.querySelector(mainCardsSelector);
   const card = new Card(data, "#card-template");
   const newCard = card.getCard();

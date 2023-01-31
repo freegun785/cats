@@ -14,12 +14,15 @@ const api = new Api(CONFIG_API);
 const formAddData = document.querySelector(".popup__form");
 const formEditData = document.querySelector(".popup__edit-form");
 
-function showData() {
-  api.getAllData().then((data) =>
+async function showData() {
+  let localData = [];
+  await api.getAllData().then((data) =>
     data.forEach((cat) => {
       createCard(".cards", cat);
+      localData.push(cat);
     })
   );
+  localStorage.setItem("cards", JSON.stringify(localData));
 }
 
 showData();
@@ -27,9 +30,13 @@ showData();
 function formAddCat(e) {
   e.preventDefault();
   const dataForm = getFormInfo(".popup__form");
-  api.addData(dataForm);
-  createCard(".cards", dataForm);
-  popupAddData.close();
+  if (dataForm) {
+    api.addData(dataForm);
+    createCard(".cards", dataForm);
+    popupAddData.close();
+  } else {
+    alert(`Идентификатор котика совпадает с другим!`);
+  }
 }
 
 async function formEditCat(e) {
